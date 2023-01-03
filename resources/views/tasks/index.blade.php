@@ -12,6 +12,7 @@
               <p>
                 <img src="" alt="" width="100">
               </p>
+              @include('tasks.partials.status',['task'=>$task])
               <div>
                 <a href="{{ route('tasks.edit',$task->id) }}" class="btn btn-success btn-sm">Edit</a>
                 <a href="{{ route('tasks.destroy',$task->id) }}" class="btn btn-danger btn-sm">Delete</a>
