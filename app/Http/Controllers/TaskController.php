@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TaskCreateRequest;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -35,7 +36,7 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskCreateRequest $request)
     {
         $task = new Task();
         $task->title =  $request->title;
@@ -45,6 +46,8 @@ class TaskController extends Controller
         //process the slug again save for unique 
         $task->slug = $task->slug. '-'. $task->id;
         $task->save();
+        //redirect with flash message
+        session()->flash('success','Task has been created successfully');
         return redirect()->route('index');
     }
 
@@ -77,7 +80,7 @@ class TaskController extends Controller
      * @param  \App\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(TaskCreateRequest $request, Task $task)
     {
         //
     }
